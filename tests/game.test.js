@@ -1,6 +1,6 @@
 const { gameMethods, 
         arrayPalabrasDifBajaES, arrayPalabrasDifMediaES, arrayPalabrasDifAltaES,
-        /*arrayPalabrasDifBajaEN, arrayPalabrasDifMediaEN, arrayPalabrasDifAltaEN*/} = require('../routes/game.js');
+        arrayPalabrasDifBajaEN, arrayPalabrasDifMediaEN, arrayPalabrasDifAltaEN} = require('../routes/game.js');
 
 describe('game module', () => {
 
@@ -40,25 +40,25 @@ describe('game module', () => {
     expect(gameMethods.chooseLevelES("alta")).toBe(arrayPalabrasDifAltaES);
   });
 
-  // it('choose level 1 english', () => {
-  //   expect(gameMethods.chooseLevelES("baja")).toBe(arrayPalabrasDifBajaEN);
-  // });
+  it('choose level 1 english', () => {
+    expect(gameMethods.chooseLevelEN("baja")).toBe(arrayPalabrasDifBajaEN);
+  });
 
-  // it('choose level 2 english', () => {
-  //   expect(gameMethods.chooseLevelES("media")).toBe(arrayPalabrasDifMediaEN);
-  // });
+  it('choose level 2 english', () => {
+    expect(gameMethods.chooseLevelEN("media")).toBe(arrayPalabrasDifMediaEN);
+  });
 
-  // it('choose level 3 english', () => {
-  //   expect(gameMethods.chooseLevelES("alta")).toBe(arrayPalabrasDifAltaEN);
-  // });
+  it('choose level 3 english', () => {
+    expect(gameMethods.chooseLevelEN("alta")).toBe(arrayPalabrasDifAltaEN);
+  });
 
-  // it('choose spanish language', ()=>{
-  //   expect(gameMethods.chooseLanguage("spanish").toBe(1));
-  // });
+  it('choose spanish language', ()=>{
+    expect(gameMethods.chooseLanguage("spanish")).toBe(1);
+  });
 
-  // it('choose english language', ()=>{
-  //   expect(gameMethods.chooseLanguage("english").toBe(2));
-  // });
+  it('choose english language', ()=>{
+    expect(gameMethods.chooseLanguage("english")).toBe(2);
+  });
 
   it('get random number', ()=>{
     var randomNumber = gameMethods.getRandomNumber();
