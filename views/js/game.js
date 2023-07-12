@@ -6,6 +6,8 @@ var arrayPalabras = ["manzana", "perro", "casa", "gato", "sol", "libro", "mesa",
 var palabra = [];
 var palabraSecreta = "";
 
+const keys = document.getElementsByClassName('key');
+
 startGame();
 document.getElementById('inputField').value += palabra.join(" ");
 
@@ -51,17 +53,17 @@ function checkLetter(letra){
     }
 }
 
-function chooseLevel(dificultad){
-    if (dificultad == "dificultad baja"){
-        return 1;
-    }
-    else if (dificultad == "dificultad media"){
-        return 2;
-    }
-    else if (dificultad == "dificultad alta"){
-        return 3;
-    }
-}
+// function chooseLevel(dificultad){
+//     if (dificultad == "dificultad baja"){
+//         return 1;
+//     }
+//     else if (dificultad == "dificultad media"){
+//         return 2;
+//     }
+//     else if (dificultad == "dificultad alta"){
+//         return 3;
+//     }
+// }
 
 function getRandomNumber() {
     return Math.floor(Math.random() * 10);
