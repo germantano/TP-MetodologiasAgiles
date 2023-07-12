@@ -14,9 +14,6 @@ var arrayPalabrasDifAltaEN = ["retrospective", "incremental", "development"];
 var palabra = [];
 var palabraSecreta = "";
 
-// Palabra ingresada por el usuario
-var palabraUsuario = "";
-
 const gameMethods = {
 
     getRandomNumber: function() {

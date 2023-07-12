@@ -1,15 +1,39 @@
 var counter = 0;
 
-var arrayPalabras = ["manzana", "perro", "casa", "gato", "sol", "libro", "mesa", "amarillo", "planta", "auto"];
+var arrayPalabrasDifBajaES = ["scrum", "perro", "casa", "gato", "sol", "libro", "mesa", "amarillo", "planta", "auto"];
+var arrayPalabrasDifMediaES = ["historia", "esfuerzo", "persona", "agilidad", "equilibrio", "cascada", "ceremonia", "usuario",
+                                "cliente", "iteracion"];
+var arrayPalabrasDifAltaES = ["simplicidad", "retrospectiva", "impresionante", "manifiesto", "colaboracion", "compromiso",
+                            "refactorización", "inigualable", "requerimiento", "mantenimiento"];
+
+var arrayPalabrasDifBajaEN = ["scrum", "daily", "sprint", "hello", "bye", "morning", "code", "kanban", "lean", "key"];
+var arrayPalabrasDifMediaEN = ["review", "agile", "ceremony", "software", "backend", "frontend", "programming", 
+                                "backlog", "product", "testing"];
+var arrayPalabrasDifAltaEN = ["retrospective", "incremental", "development", "methodology", "refactoring", "coverage", "waterfall",
+                                "scenario", "devops", "engineering"];
 
 // Palabra que se va formando a medida que el jugador adivina
 var palabra = [];
 var palabraSecreta = "";
+var intentos = 7;
 
 const keys = document.getElementsByClassName('key');
+var language = document.querySelector('#idioma').value;
+var level = document.querySelector('#dificultad').value;
 
-startGame();
+console.log(language, level);
+
+localStorage.setItem('idioma', language);
+localStorage.setItem('dificultad', level);
+
+console.log(`Print variables local storage ${typeof(localStorage.getItem('idioma'))}`)
+
+//const storedLanguage = localStorage.getItem('language');
+//const storedLevel = localStorage.getItem('level');
+
 document.getElementById('inputField').value += palabra.join(" ");
+startGame(localStorage.getItem('idioma'), localStorage.getItem('dificultad'));
+
 
 Array.from(keys).forEach(key => {
     key.addEventListener('click', () => {
@@ -18,9 +42,10 @@ Array.from(keys).forEach(key => {
     });
 });
 
-function startGame(){
-    let randomNumber = getRandomNumber();
-    palabraSecreta = arrayPalabras[randomNumber];
+function startGame(theLanguage, theLevel){
+    document.getElementById('intentos').innerHTML = intentos;
+    //palabraSecreta = arrayPalabrasDifMediaES[getRandomNumber()];
+    palabraSecreta = getWord(theLanguage, theLevel);
     for (let i = 0; i < palabraSecreta.length; i++) {
         palabra[i] = "_";
     }
@@ -43,7 +68,8 @@ function checkLetter(letra){
         return true;
     }else{
         counter++;
-        console.log(`La letra ${letra} no se encuentra en la palabra. Intentos restantes: ${ 7 - counter}`);
+        console.log(`La letra ${letra} no se encuentra en la palabra. Intentos restantes: ${ intentos - counter}`);
+        document.getElementById('intentos').innerHTML = `: ${intentos - counter}`;
         console.log(`La palabra es: ${palabra}`);
         if(7-counter == 0){
             alert("Perdiste");
@@ -53,17 +79,27 @@ function checkLetter(letra){
     }
 }
 
-// function chooseLevel(dificultad){
-//     if (dificultad == "dificultad baja"){
-//         return 1;
-//     }
-//     else if (dificultad == "dificultad media"){
-//         return 2;
-//     }
-//     else if (dificultad == "dificultad alta"){
-//         return 3;
-//     }
-// }
+function getWord(idioma, dificultad){
+    switch(true){
+        case (dificultad=="baja") && (idioma=="spanish"):
+            return arrayPalabrasDifBajaES[getRandomNumber()];
+        
+        case (dificultad=="media") && (idioma=="spanish"):
+            return arrayPalabrasDifMediaES[getRandomNumber()];
+
+        case (dificultad=="alta") && (idioma=="spanish"):
+            return arrayPalabrasDifAltaES[getRandomNumber()];
+
+        case (dificultad=="baja") && (idioma=="english"):
+            return arrayPalabrasDifBajaEN[getRandomNumber()];
+            
+        case (dificultad=="media") && (idioma=="english"):
+            return arrayPalabrasDifMediaEN[getRandomNumber()];
+    
+        case (dificultad=="alta") && (idioma=="english"):
+            return arrayPalabrasDifAltaEN[getRandomNumber()];
+    }
+}
 
 function getRandomNumber() {
     return Math.floor(Math.random() * 10);
