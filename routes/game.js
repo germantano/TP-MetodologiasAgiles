@@ -2,13 +2,13 @@ var counter = 0;
 
 var arrayPalabrasDifBajaES = ["scrum", "perro", "casa", "gato", "sol", "libro", "mesa", "amarillo", "planta", "auto"];
 var arrayPalabrasDifMediaES = ["historia", "esfuerzo", "persona", "agilidad", "equilibrio", "cascada", "ceremonia", "usuario",
-                                "cliente", "iteracion"]
+                                "cliente", "iteracion"];
 var arrayPalabrasDifAltaES = ["simplicidad", "retrospectiva", "impresionante", "manifiesto", "colaboracion", "compromiso",
                             "refactorización", "inigualable", "requerimiento", "mantenimiento"];
 
-var arrayPalabrasDifBajaEN = ["scrum", "daily", "sprint"]
-var arrayPalabrasDifMediaEN = ["review", "refactoring", "ceremony"]
-var arrayPalabrasDifAltaEN = ["retrospective", "incremental", "development"]
+var arrayPalabrasDifBajaEN = ["scrum", "daily", "sprint"];
+var arrayPalabrasDifMediaEN = ["review", "refactoring", "ceremony"];
+var arrayPalabrasDifAltaEN = ["retrospective", "incremental", "development"];
 
 // Palabra que se va formando a medida que el jugador adivina
 var palabra = [];
@@ -91,7 +91,7 @@ const gameMethods = {
     },
     
     getArray: function(language, dificultad){
-        let option = this.chooseLanguage(language)
+        let option = this.chooseLanguage(language);
         if (option == 1){
             return this.chooseLevelES(dificultad);
         }
@@ -136,7 +136,7 @@ const gameMethods = {
         }
     },
     
-}
+};
 
 gameMethods.startGame();
 

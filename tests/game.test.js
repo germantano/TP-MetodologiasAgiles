@@ -1,6 +1,6 @@
 const { gameMethods, 
         arrayPalabrasDifBajaES, arrayPalabrasDifMediaES, arrayPalabrasDifAltaES,
-        arrayPalabrasDifBajaEN, arrayPalabrasDifMediaEN, arrayPalabrasDifAltaEN} = require('../routes/game.js');
+        /*arrayPalabrasDifBajaEN, arrayPalabrasDifMediaEN, arrayPalabrasDifAltaEN*/} = require('../routes/game.js');
 
 describe('game module', () => {
 
