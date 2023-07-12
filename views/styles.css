@@ -1,0 +1,114 @@
+.keyboard {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .key {
+    padding: 10px;
+    margin: 5px;
+    /*border: 1px solid #ccc; */
+    border: solid 2px;
+    border-radius: 6px;
+    background-color: #fff;
+    cursor: pointer;
+    width: 50px;
+    font-weight: bold;
+    font-size: large;
+    background-color:cornsilk;
+  }
+
+  #inputField {
+    margin-bottom: 50px;
+    text-align: center;
+    width: 200px;
+    height: 50px;
+    justify-content: center;
+    border: solid 2px;
+    border-radius: 6px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .keyboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .btn-salir {
+    text-align: center;
+    justify-content: center;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 200px;
+    font-weight: bold;
+    font-size: large;
+    background-color: rgb(143, 205, 143);
+  }
+
+  body{
+    background-color: #ccc;
+  }
+
+  #container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  /* Estilos para el menú */
+  .menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid 2px;
+    border-radius: 6px;
+    padding: 20px;
+  }
+
+  .menu-item {
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: large;
+  }
+
+  .menu-item select {
+    width: 200px;
+    font-weight: bold;
+    font-size: large;
+  }
+
+  .menu-item button {
+    padding: 10px 20px;
+  }
+
+.btn-iniciar-partida{
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: large;
+  margin-bottom: 10px;
+  background-color: rgb(143, 205, 143);
+}
+
+.btn-iniciar-partida:hover{
+  background-color: rgb(74, 138, 74);
+}
