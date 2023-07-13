@@ -17,23 +17,16 @@ var palabra = [];
 var palabraSecreta = "";
 var intentos = 7;
 
+// var language = document.getElementById('idioma').value;
+// var level = document.getElementById('dificultad').value;
+
+// localStorage.setItem('idioma', language);
+// localStorage.setItem('dificultad', level);
+
+// startGame(localStorage.getItem('idioma'), localStorage.getItem('dificultad'));
+startGame();
+
 const keys = document.getElementsByClassName('key');
-var language = document.querySelector('#idioma').value;
-var level = document.querySelector('#dificultad').value;
-
-console.log(language, level);
-
-localStorage.setItem('idioma', language);
-localStorage.setItem('dificultad', level);
-
-console.log(`Print variables local storage ${typeof(localStorage.getItem('idioma'))}`)
-
-//const storedLanguage = localStorage.getItem('language');
-//const storedLevel = localStorage.getItem('level');
-
-document.getElementById('inputField').value += palabra.join(" ");
-startGame(localStorage.getItem('idioma'), localStorage.getItem('dificultad'));
-
 
 Array.from(keys).forEach(key => {
     key.addEventListener('click', () => {
@@ -42,10 +35,11 @@ Array.from(keys).forEach(key => {
     });
 });
 
-function startGame(theLanguage, theLevel){
+function startGame(){
+    document.getElementById('inputField').value += palabra.join(" ");
     document.getElementById('intentos').innerHTML = intentos;
-    //palabraSecreta = arrayPalabrasDifMediaES[getRandomNumber()];
-    palabraSecreta = getWord(theLanguage, theLevel);
+    // palabraSecreta = getWord(idioma, dificultad);
+    palabraSecreta = arrayPalabrasDifBajaES[getRandomNumber()];
     for (let i = 0; i < palabraSecreta.length; i++) {
         palabra[i] = "_";
     }
