@@ -17,17 +17,44 @@ var palabra = [];
 var palabraSecreta = "";
 var intentos = 7;
 
-// var language = document.getElementById('idioma').value;
-// var level = document.getElementById('dificultad').value;
+/*
+document.addEventListener('DOMContentLoaded', function() {
+    var languageSelect = document.getElementById('idioma');
+    var levelSelect = document.getElementById('dificultad');
+  
+    // Actualiza selección del idioma
+    languageSelect.addEventListener('change', function() {
+      var language = languageSelect.value;
+      console.log('Nuevo idioma seleccionado:', language);
+      
+    });
+  
+    // Actualiza selección de la dificultad
+    levelSelect.addEventListener('change', function() {
+      var level = levelSelect.value;
+      console.log('Nuevo nivel de dificultad seleccionado:', level);
+      //Actualizar cualquier otra lógica que necesites con el nuevo valor de dificultad
+    });
+  });*/
 
-// localStorage.setItem('idioma', language);
-// localStorage.setItem('dificultad', level);
+function setSettings(){
+    var language = document.getElementById('idioma').value;
+    var level = document.getElementById('dificultad').value;
+    var url = 'game.html?language=' + encodeURIComponent(language) + '&level=' + encodeURIComponent(level);
+    location.href = url;
+  }
 
-// startGame(localStorage.getItem('idioma'), localStorage.getItem('dificultad'));
-startGame();
+  document.addEventListener('DOMContentLoaded', function() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var language = urlParams.get('language');
+    var level = urlParams.get('level');
+    startGame(language, level);
+  });
+  
 
 const keys = document.getElementsByClassName('key');
 document.getElementById('inputField').value += palabra.join(" ");
+
 
 Array.from(keys).forEach(key => {
     key.addEventListener('click', () => {
@@ -36,10 +63,10 @@ Array.from(keys).forEach(key => {
     });
 });
 
-function startGame(){
+function startGame(idioma, dificultad){
+    console.log(idioma, dificultad);
     document.getElementById('intentos').innerHTML = intentos;
-    // palabraSecreta = getWord(idioma, dificultad);
-    palabraSecreta = arrayPalabrasDifBajaES[getRandomNumber()];
+    palabraSecreta = getWord(idioma, dificultad);
     for (let i = 0; i < palabraSecreta.length; i++) {
         palabra[i] = "_";
     }
@@ -56,7 +83,7 @@ function checkLetter(letra){
             }
         }
         if(palabra.join("") === palabraSecreta){
-            alert(`Ganaste! La palabra era ${palabraSecreta}.`);
+            alert('Felicitaciones! Haz ganado..');
             location.href = "index.html";
         }
         return true;
