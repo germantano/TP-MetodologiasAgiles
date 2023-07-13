@@ -27,6 +27,7 @@ var intentos = 7;
 startGame();
 
 const keys = document.getElementsByClassName('key');
+document.getElementById('inputField').value += palabra.join(" ");
 
 Array.from(keys).forEach(key => {
     key.addEventListener('click', () => {
@@ -36,7 +37,6 @@ Array.from(keys).forEach(key => {
 });
 
 function startGame(){
-    document.getElementById('inputField').value += palabra.join(" ");
     document.getElementById('intentos').innerHTML = intentos;
     // palabraSecreta = getWord(idioma, dificultad);
     palabraSecreta = arrayPalabrasDifBajaES[getRandomNumber()];

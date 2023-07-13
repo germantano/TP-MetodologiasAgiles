@@ -26,13 +26,9 @@ const gameMethods = {
         let dificultad = "baja";
         let arrayPalabras = this.getArray(language, dificultad);
         palabraSecreta = arrayPalabras[randomNumber];
-        for (let i = 0; i < palabraSecreta.length; i++) {
-            palabra[i] = "_";
-        }
-        console.log(`La palabra es: ${palabra}`);
     
-        for(let i = 0; i < palabraUsuario.length; i++){
-            this.guess(palabraUsuario[i]);
+        for(let i = 0; i < palabraSecreta.length; i++){
+            this.guess(palabra[i]);
             if(!this.counterOfAttempts(counter)){
                 break;
             }
