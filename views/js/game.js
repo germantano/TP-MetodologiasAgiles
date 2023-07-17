@@ -69,12 +69,13 @@ function checkLetter(letra){
         }
         return true;
     }else{
-        counter++;
-        console.log(`La letra ${letra} no se encuentra en la palabra. Intentos restantes: ${ intentos - counter}`);
-        document.getElementById('intentos').innerHTML = `: ${intentos - counter}`;
+        //counter++;
+        intentos--;
+        console.log(`La letra ${letra} no se encuentra en la palabra. Intentos restantes: ${ intentos}`);
+        document.getElementById('intentos').innerHTML = `: ${intentos}`;
         console.log(`La palabra es: ${palabra}`);
-        if(7-counter == 0){
-            alert("Perdiste");
+        if(intentos== 0){
+            alert("Perdiste :(");
             location.href = "index.html";
         }
         return false;

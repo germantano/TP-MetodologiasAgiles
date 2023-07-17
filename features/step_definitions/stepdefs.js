@@ -72,12 +72,12 @@ Then('usuario gana la partida, juego informa situación', function () {
 
 // Test usuario pierde partida
 
-
+let intentos = 0;
 const letrasAbecedario = [
     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
     'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
   ];
-  let intentos = 7;
+
 
 
 Given('contador de intentos restantes igual 1', function () {
