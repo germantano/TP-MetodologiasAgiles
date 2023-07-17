@@ -9,7 +9,7 @@
     "cucumber": "cucumber-js",
     "lint": "eslint .  --ext .js",
     "start": "node app.js",
-    "build": "npm install & npm run start &"
+    "build": "npm run start &"
   },
   "author": "",
   "license": "ISC",
