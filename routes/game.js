@@ -21,11 +21,9 @@ const gameMethods = {
     },
 
     startGame: function(){
-        let randomNumber = this.getRandomNumber();
         let language = "spanish";
         let dificultad = "baja";
-        let arrayPalabras = this.getArray(language, dificultad);
-        palabraSecreta = arrayPalabras[randomNumber];
+        let palabraSecreta = this.getWord(language, dificultad);
         for (let i = 0; i < palabraSecreta.length; i++) {
             palabra[i] = "_";
         }
@@ -84,18 +82,7 @@ const gameMethods = {
         else{
             return false;
         }
-    },
-    
-    getArray: function(language, dificultad){
-        let option = this.chooseLanguage(language);
-        if (option == 1){
-            return this.chooseLevelES(dificultad);
-        }
-        else if (option == 2){
-            return this.chooseLevelEN(dificultad);
-        }
-    },
-    
+    },    
     
     chooseLevelES: function(dificultad){
         switch(dificultad) {
