@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 var counter = 0;
 
 var arrayPalabrasDifBajaES = ["scrum", "perro", "casa", "gato", "sol", "libro", "mesa", "amarillo", "planta", "auto"];
@@ -17,40 +19,20 @@ var palabra = [];
 var palabraSecreta = "";
 var intentos = 7;
 
-/*
-document.addEventListener('DOMContentLoaded', function() {
-    var languageSelect = document.getElementById('idioma');
-    var levelSelect = document.getElementById('dificultad');
-  
-    // Actualiza selección del idioma
-    languageSelect.addEventListener('change', function() {
-      var language = languageSelect.value;
-      console.log('Nuevo idioma seleccionado:', language);
-      
-    });
-  
-    // Actualiza selección de la dificultad
-    levelSelect.addEventListener('change', function() {
-      var level = levelSelect.value;
-      console.log('Nuevo nivel de dificultad seleccionado:', level);
-      //Actualizar cualquier otra lógica que necesites con el nuevo valor de dificultad
-    });
-  });*/
-
 function setSettings(){
     var language = document.getElementById('idioma').value;
     var level = document.getElementById('dificultad').value;
     var url = 'game.html?language=' + encodeURIComponent(language) + '&level=' + encodeURIComponent(level);
     location.href = url;
-  }
+}
 
-  document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     var urlParams = new URLSearchParams(window.location.search);
     var language = urlParams.get('language');
     var level = urlParams.get('level');
     startGame(language, level);
-  });
-  
+});
+
 
 const keys = document.getElementsByClassName('key');
 document.getElementById('inputField').value += palabra.join(" ");
@@ -64,7 +46,6 @@ Array.from(keys).forEach(key => {
 });
 
 function startGame(idioma, dificultad){
-    console.log(idioma, dificultad);
     document.getElementById('intentos').innerHTML = intentos;
     palabraSecreta = getWord(idioma, dificultad);
     for (let i = 0; i < palabraSecreta.length; i++) {

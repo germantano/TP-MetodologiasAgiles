@@ -12,6 +12,10 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
+    "plugins": [
+        "cucumber",
+        "node"
+    ],
     "rules": {
         "node/exports-style": ["error", "module.exports"],
         "node/file-extension-in-import": ["error", "always"],
@@ -22,6 +26,9 @@
         "node/prefer-global/url": ["error", "always"],
         "node/prefer-promises/dns": "error",
         "node/prefer-promises/fs": "error",
+        "cucumber/async-then": 2,
+        "cucumber/expression-type": 2,
+        "cucumber/no-restricted-tags": [2, "wip", "broken", "foo"],
         "semi": ["error", "always"]
     }
 }

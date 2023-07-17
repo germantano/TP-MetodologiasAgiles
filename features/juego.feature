@@ -1,9 +1,6 @@
-Feature: Iniciar Partida
-  Saber si el usuario va a jugar
+Feature: Verificar que el usuario ingresó al juego
 
-  Scenario: El usuario va a jugar 
-    Given today is Sunday
-    When I ask whether it's Friday yet
-    Then I should be told "Nope"
-
-
+  Scenario: Verificar la URL de la página principal
+    Given que el usuario ha ingresado al juego
+    When el usuario juega al juego
+    Then la URL del juego debería ser "http://localhost:3000/game.html"

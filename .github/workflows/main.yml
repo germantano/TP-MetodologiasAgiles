@@ -18,6 +18,9 @@ jobs:
         
       - name: Run tests and coverage
         run: npm test -- --coverage
+
+      -name: Run Acceptance Tests
+        run: npm run cucumber
         
       - name: Run Eslint
         run: npm run lint
