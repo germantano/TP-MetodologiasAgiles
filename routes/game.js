@@ -26,6 +26,9 @@ const gameMethods = {
         let dificultad = "baja";
         let arrayPalabras = this.getArray(language, dificultad);
         palabraSecreta = arrayPalabras[randomNumber];
+        for (let i = 0; i < palabraSecreta.length; i++) {
+            palabra[i] = "_";
+        }
     
         for(let i = 0; i < palabraSecreta.length; i++){
             this.guess(palabra[i]);
@@ -128,6 +131,28 @@ const gameMethods = {
             return 2;
         }
     },
+
+    getWord: function(idioma, dificultad){
+        switch(true){
+            case (dificultad=="baja") && (idioma=="spanish"):
+                return arrayPalabrasDifBajaES[this.getRandomNumber()];
+            
+            case (dificultad=="media") && (idioma=="spanish"):
+                return arrayPalabrasDifMediaES[this.getRandomNumber()];
+    
+            case (dificultad=="alta") && (idioma=="spanish"):
+                return arrayPalabrasDifAltaES[this.getRandomNumber()];
+    
+            case (dificultad=="baja") && (idioma=="english"):
+                return arrayPalabrasDifBajaEN[this.getRandomNumber()];
+                
+            case (dificultad=="media") && (idioma=="english"):
+                return arrayPalabrasDifMediaEN[this.getRandomNumber()];
+        
+            case (dificultad=="alta") && (idioma=="english"):
+                return arrayPalabrasDifAltaEN[this.getRandomNumber()];
+        }
+    }
     
 };
 
