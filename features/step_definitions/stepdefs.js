@@ -1,6 +1,6 @@
 /* eslint-disable */
-const { Builder } = require('selenium-webdriver');
-const { Given, When, Then, After } = require('@cucumber/cucumber');
+const { Builder, webdriver } = require('selenium-webdriver');
+const { Given, When, Then } = require('@cucumber/cucumber');
 const {gameMethods} = require('../../routes/game.js');
 
 let driver;
