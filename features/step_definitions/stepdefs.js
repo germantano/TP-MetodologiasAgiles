@@ -14,8 +14,8 @@ const letrasAbecedario = [
 
 Given('que el usuario ha ingresado al juego', async () => {
     // driver = await new Builder().forBrowser('chrome').build();
-    driver = webdriver.Chrome()
-    await driver.get('https://app-ahorcado.onrender.com/game.html');
+    driver = webdriver.Chrome();
+    await driver.get('https://localhost:3000/game.html');
 });
 
 When('el usuario juega al juego', async () => {
@@ -35,8 +35,8 @@ Then('la URL del juego debería ser {string}', async (expectedUrl) => {
 
 Given('que el usuario ha ingresado a la página principal', async () => {
     // driver = await new Builder().forBrowser('chrome').build();
-    driver = webdriver.Chrome()
-    await driver.get('https://app-ahorcado.onrender.com/index.html');
+    driver = webdriver.Chrome();
+    await driver.get('https://localhost:3000/index.html');
 });
 
 When('el usuario navega por la página principal', async () => {
