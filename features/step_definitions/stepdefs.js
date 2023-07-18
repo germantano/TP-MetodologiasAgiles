@@ -13,8 +13,7 @@ const letrasAbecedario = [
 
 
 Given('que el usuario ha ingresado al juego', async () => {
-    // driver = await new Builder().forBrowser('chrome').build();
-    driver = webdriver.Chrome();
+    driver = await new Builder().forBrowser('chrome').build();
     await driver.get('https://localhost:3000/game.html');
 });
 
@@ -34,8 +33,7 @@ Then('la URL del juego debería ser {string}', async (expectedUrl) => {
 
 
 Given('que el usuario ha ingresado a la página principal', async () => {
-    // driver = await new Builder().forBrowser('chrome').build();
-    driver = webdriver.Chrome();
+    driver = await new Builder().forBrowser('chrome').build();
     await driver.get('https://localhost:3000/index.html');
 });
 
