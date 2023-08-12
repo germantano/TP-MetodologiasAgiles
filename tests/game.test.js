@@ -12,16 +12,16 @@ describe('game module', () => {
     expect(gameMethods.checkEmptyWord("")).toBe(true);
   });
 
-  it('checks included letter', () => {
-    const letra = 'a';
-    const resultado = gameMethods.checkLetter(letra);
-    if (resultado){
-      expect(resultado).toBe(true);
-    }
-    else{
-      expect(resultado).toBe(false);
-    }
-    
+  it('devuleve true: palabra contiene letra', () => {
+    const letra = "e";
+    const palabra = "ceremonia";
+    expect(checkLetter(letra, palabra)).toBe(true);
+  });
+
+  it('devuelve false: palabra no contiene letra', () => {
+    const letra = "w";
+    const palabra = "ceremonia";
+    expect(checkLetter(letra, palabra)).toBe(false);
   });
 
   it('limit attempt', ()=>{

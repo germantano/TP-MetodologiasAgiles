@@ -54,56 +54,74 @@ function startGame(idioma, dificultad){
     console.log(`La palabra secreta es: ${palabraSecreta}`);
 }
 
-function checkLetter(letra){
-    if (palabraSecreta.includes(letra)){
-        for(let posicion in palabraSecreta){
-            if(palabraSecreta[posicion] == letra){
-                palabra[posicion] = letra;
-                document.getElementById('inputField').value = palabra.join(" ");
-                console.log(`La palabra es: ${palabra.join("")}`);
+function checkLetter(letra, palabraDePrueba = null){
+    // Juego
+    if (palabraDePrueba == null){
+        if (palabraSecreta.includes(letra)){
+            for(let posicion in palabraSecreta){
+                if(palabraSecreta[posicion] == letra){
+                    palabra[posicion] = letra;
+                    document.getElementById('inputField').value = palabra.join(" ");
+                    console.log(`La palabra es: ${palabra.join("")}`);
+                }
             }
+            if(palabra.join("") === palabraSecreta){
+                alert('Felicitaciones! Haz ganado..');
+                location.href = "index.html";
+            }
+            return true;
+        }else{
+            //counter++;
+            intentos--;
+            console.log(`La letra ${letra} no se encuentra en la palabra. Intentos restantes: ${ intentos}`);
+            document.getElementById('intentos').innerHTML = `: ${intentos}`;
+            console.log(`La palabra es: ${palabra}`);
+            if(intentos== 0){
+                alert("Perdiste :(");
+                location.href = "index.html";
+            }
+            return false;
         }
-        if(palabra.join("") === palabraSecreta){
-            alert('Felicitaciones! Haz ganado..');
-            location.href = "index.html";
+    }
+    // Tests
+    else{
+        if (palabraSecreta.includes(letra)){
+            return true;
         }
-        return true;
-    }else{
-        //counter++;
-        intentos--;
-        console.log(`La letra ${letra} no se encuentra en la palabra. Intentos restantes: ${ intentos}`);
-        document.getElementById('intentos').innerHTML = `: ${intentos}`;
-        console.log(`La palabra es: ${palabra}`);
-        if(intentos== 0){
-            alert("Perdiste :(");
-            location.href = "index.html";
+        else{
+            return false;
         }
-        return false;
     }
 }
 
 function getWord(idioma, dificultad){
     switch(true){
         case (dificultad=="baja") && (idioma=="spanish"):
-            return arrayPalabrasDifBajaES[getRandomNumber()];
+            let arrayLen1 = arrayPalabrasDifBajaES.length;
+            return arrayPalabrasDifBajaES[getRandomNumber(arrayLen)];
         
         case (dificultad=="media") && (idioma=="spanish"):
-            return arrayPalabrasDifMediaES[getRandomNumber()];
+            let arrayLen2 = arrayPalabrasDifMediaES.length;
+            return arrayPalabrasDifMediaES[getRandomNumber(arrayLen2)];
 
         case (dificultad=="alta") && (idioma=="spanish"):
-            return arrayPalabrasDifAltaES[getRandomNumber()];
+            let arrayLen3 = arrayPalabrasDifAltaES.length;
+            return arrayPalabrasDifAltaES[getRandomNumber(arrayLen3)];
 
         case (dificultad=="baja") && (idioma=="english"):
-            return arrayPalabrasDifBajaEN[getRandomNumber()];
+            let arrayLen4 = arrayPalabrasDifBajaEN.length
+            return arrayPalabrasDifBajaEN[getRandomNumber(arrayLen4)];
             
         case (dificultad=="media") && (idioma=="english"):
-            return arrayPalabrasDifMediaEN[getRandomNumber()];
+            let arrayLen5 = arrayPalabrasDifMediaEN.length
+            return arrayPalabrasDifMediaEN[getRandomNumber(arrayLen5)];
     
         case (dificultad=="alta") && (idioma=="english"):
-            return arrayPalabrasDifAltaEN[getRandomNumber()];
+            let arrayLen6 = arrayPalabrasDifAltaEN.length;
+            return arrayPalabrasDifAltaEN[getRandomNumber(arrayLen6)];
     }
 }
 
-function getRandomNumber() {
-    return Math.floor(Math.random() * 10);
+function getRandomNumber(arrayLength) {
+    return Math.floor(Math.random() * arrayLength);
 }
