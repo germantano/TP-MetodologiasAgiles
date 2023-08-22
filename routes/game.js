@@ -51,20 +51,16 @@ const gameMethods = {
         }
         return false;
     },
-    
-    checkLetter: function(letra){
-        if (palabraSecreta.includes(letra)){
-            for(let posicion in palabraSecreta){
-                if(palabraSecreta[posicion] == letra){
-                    palabra[posicion] = letra;
-                    console.log(`La palabra es: ${palabra.join("")}`);
-                }
+
+    checkLetter:function(letra, palabraDePrueba){
+        // Tests
+        if(palabraDePrueba){
+            if (palabraDePrueba.includes(letra)){
+                return true;
             }
-            return true;
-        }else{
-            counter++;
-            console.log(`La letra ${letra} no se encuentra en la palabra. Intentos restantes: ${ 7 - counter}`);
-            return false;
+            else{
+                return false;
+            }
         }
     },
     
@@ -122,24 +118,30 @@ const gameMethods = {
     getWord: function(idioma, dificultad){
         switch(true){
             case (dificultad=="baja") && (idioma=="spanish"):
-                return arrayPalabrasDifBajaES[this.getRandomNumber()];
-            
-            case (dificultad=="media") && (idioma=="spanish"):
-                return arrayPalabrasDifMediaES[this.getRandomNumber()];
-    
-            case (dificultad=="alta") && (idioma=="spanish"):
-                return arrayPalabrasDifAltaES[this.getRandomNumber()];
-    
-            case (dificultad=="baja") && (idioma=="english"):
-                return arrayPalabrasDifBajaEN[this.getRandomNumber()];
-                
-            case (dificultad=="media") && (idioma=="english"):
-                return arrayPalabrasDifMediaEN[this.getRandomNumber()];
+            let arrayLen1 = arrayPalabrasDifBajaES.length;
+            return arrayPalabrasDifBajaES[this.getRandomNumber(arrayLen1)];
         
-            case (dificultad=="alta") && (idioma=="english"):
-                return arrayPalabrasDifAltaEN[this.getRandomNumber()];
+        case (dificultad=="media") && (idioma=="spanish"):
+            let arrayLen2 = arrayPalabrasDifMediaES.length;
+            return arrayPalabrasDifMediaES[this.getRandomNumber(arrayLen2)];
+
+        case (dificultad=="alta") && (idioma=="spanish"):
+            let arrayLen3 = arrayPalabrasDifAltaES.length;
+            return arrayPalabrasDifAltaES[this.getRandomNumber(arrayLen3)];
+
+        case (dificultad=="baja") && (idioma=="english"):
+            let arrayLen4 = arrayPalabrasDifBajaEN.length
+            return arrayPalabrasDifBajaEN[this.getRandomNumber(arrayLen4)];
+            
+        case (dificultad=="media") && (idioma=="english"):
+            let arrayLen5 = arrayPalabrasDifMediaEN.length
+            return arrayPalabrasDifMediaEN[this.getRandomNumber(arrayLen5)];
+    
+        case (dificultad=="alta") && (idioma=="english"):
+            let arrayLen6 = arrayPalabrasDifAltaEN.length;
+            return arrayPalabrasDifAltaEN[this.getRandomNumber(arrayLen6)];
         }
-    }
+    },
     
 };
 

@@ -55,23 +55,27 @@ Then('la URL de la página principal debería ser {string}', async (expectedUrl)
 let palabraAdivinar;
 let ultimaLetraUsuario;
 let usuarioGano = false;
+let ingresoLetras = ['s', 'c', 'a', 'r', 'e', 'u', 'm'];
 
 
-Given('última letra para adivinar la palabra', function () {
-    gameMethods.startGame();
-    palabraAdivinar = gameMethods.getWord("spanish", "alta");
+Given('el juego comienza con la palabra scrum', function () {
+    palabraAdivinar = "scrum";
     console.log(`Palabra adivinar ${palabraAdivinar}`);
-    posicionRandom = Math.floor(Math.random() * palabraAdivinar.length);
-    letraFaltante = palabraAdivinar.charAt(posicionRandom);
-    palabraCambiada = palabraAdivinar.replace(palabraAdivinar[posicionRandom], "_");
 });
 
-When('usuario selecciona la última letra correcta', function () {
-    for (let letra of letrasAbecedario) {
-        if (letra == letraFaltante){
-            console.log(`La última letra fue adivinada: ${letra}`)
-            console.log(`PALABRA: ${palabraAdivinar}`); 
+When('usuario adivina una letra correcta', async () => {
+    for (let letra of ingresoLetras) {
+        if (palabraAdivinar.includes(letra)) {
+            ultimaLetraUsuario = letra;
+            console.log(`El usuario ingreso la letra ${letra}`);
+            console.log(`La palabra adivinar contiene la letra ${letra}`);
         }
+    }
+    driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('http://localhost:3000/game.html');
+    let array = driver.findElements(webdriver.By.className('keys'));
+    for (letra of array){
+        letra.click();
     }
 });
 
@@ -82,16 +86,15 @@ Then('usuario gana la partida, juego informa situación', function () {
 
 // Test usuario pierde partida
 
-let intentos;
+let intentos = 3;
+let ingresoLetrasPierde = ['a', 'b', 'c', 'd', 'w']
 
-
-Given('contador de intentos restantes igual 1', async () => {
-    intentos = 1;
-    gameMethods.startGame("spanish", "baja");
+Given('el juego comienza con la palabra agilidad', function () {
+    
 });
 
-When('usuario ingresa una letra incorrecta', async () => {
-    for (let letra of letrasAbecedario) {
+When('usuario ingresa una letra incorrecta', function () {
+    for (let letra of ingresoLetrasPierde) {
         if (!gameMethods.checkLetter(letra)) {
           intentos -= 1;
           if (intentos == 0) {
@@ -101,7 +104,7 @@ When('usuario ingresa una letra incorrecta', async () => {
     }
 });
 
-Then('usuario pierde la partida, juego informa situación', async () => {
-    console.log(`Perdiste la partida. Intentos restantes: ${intentos}`);
+Then('usuario pierde la partida, juego informa situación', function () {
+    console.log(`Perdiste la partida`);
 });
 

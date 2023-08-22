@@ -54,43 +54,30 @@ function startGame(idioma, dificultad){
     console.log(`La palabra secreta es: ${palabraSecreta}`);
 }
 
-function checkLetter(letra, palabraDePrueba = null){
-    // Juego
-    if (palabraDePrueba == null){
-        if (palabraSecreta.includes(letra)){
-            for(let posicion in palabraSecreta){
-                if(palabraSecreta[posicion] == letra){
-                    palabra[posicion] = letra;
-                    document.getElementById('inputField').value = palabra.join(" ");
-                    console.log(`La palabra es: ${palabra.join("")}`);
-                }
+function checkLetter (letra){
+    if (palabraSecreta.includes(letra)){
+        for(let posicion in palabraSecreta){
+            if(palabraSecreta[posicion] == letra){
+                palabra[posicion] = letra;
+                document.getElementById('inputField').value = palabra.join(" ");
+                console.log(`La palabra es: ${palabra.join("")}`);
             }
-            if(palabra.join("") === palabraSecreta){
-                alert('Felicitaciones! Haz ganado..');
-                location.href = "index.html";
-            }
-            return true;
-        }else{
-            //counter++;
-            intentos--;
-            console.log(`La letra ${letra} no se encuentra en la palabra. Intentos restantes: ${ intentos}`);
-            document.getElementById('intentos').innerHTML = `: ${intentos}`;
-            console.log(`La palabra es: ${palabra}`);
-            if(intentos== 0){
-                alert("Perdiste :(");
-                location.href = "index.html";
-            }
-            return false;
         }
-    }
-    // Tests
-    else{
-        if (palabraSecreta.includes(letra)){
-            return true;
+        if(palabra.join("") === palabraSecreta){
+            alert('Felicitaciones! Haz ganado..');
+            location.href = "index.html";
         }
-        else{
-            return false;
+        return true;
+    }else{
+        intentos--;
+        console.log(`La letra ${letra} no se encuentra en la palabra. Intentos restantes: ${ intentos}`);
+        document.getElementById('intentos').innerHTML = `: ${intentos}`;
+        console.log(`La palabra es: ${palabra}`);
+        if(intentos== 0){
+            alert("Perdiste :(");
+            location.href = "index.html";
         }
+        return false;
     }
 }
 
@@ -98,7 +85,7 @@ function getWord(idioma, dificultad){
     switch(true){
         case (dificultad=="baja") && (idioma=="spanish"):
             let arrayLen1 = arrayPalabrasDifBajaES.length;
-            return arrayPalabrasDifBajaES[getRandomNumber(arrayLen)];
+            return arrayPalabrasDifBajaES[getRandomNumber(arrayLen1)];
         
         case (dificultad=="media") && (idioma=="spanish"):
             let arrayLen2 = arrayPalabrasDifMediaES.length;

@@ -15,13 +15,13 @@ describe('game module', () => {
   it('devuleve true: palabra contiene letra', () => {
     const letra = "e";
     const palabra = "ceremonia";
-    expect(checkLetter(letra, palabra)).toBe(true);
+    expect(gameMethods.checkLetter(letra, palabra)).toBe(true);
   });
 
   it('devuelve false: palabra no contiene letra', () => {
     const letra = "w";
     const palabra = "ceremonia";
-    expect(checkLetter(letra, palabra)).toBe(false);
+    expect(gameMethods.checkLetter(letra, palabra)).toBe(false);
   });
 
   it('limit attempt', ()=>{
@@ -60,11 +60,17 @@ describe('game module', () => {
     expect(gameMethods.chooseLanguage("english")).toBe(2);
   });
 
-  it('get random number', ()=>{
-    var randomNumber = gameMethods.getRandomNumber();
-    expect(randomNumber).toBeGreaterThanOrEqual(0);
-    expect(randomNumber).toBeLessThan(10);
+  it('get random number (between 0 & 3): idioma inglés', ()=>{
+    var arrayLengthEN = arrayPalabrasDifBajaEN.length;
+    expect(gameMethods.getRandomNumber(arrayLengthEN)).toBeGreaterThanOrEqual(0);
+    expect(gameMethods.getRandomNumber(arrayLengthEN)).toBeLessThan(3);
   });
+
+  it('get random number (between 0 & 10): idioma español', ()=>{
+    var arrayLengthES = arrayPalabrasDifBajaES.length;
+    expect(gameMethods.getRandomNumber(arrayLengthES)).toBeGreaterThanOrEqual(0);
+    expect(gameMethods.getRandomNumber(arrayLengthES)).toBeLessThan(10);
+  })
 
 
 });
