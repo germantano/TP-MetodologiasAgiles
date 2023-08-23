@@ -70,7 +70,7 @@ describe('game module', () => {
     var arrayLengthES = arrayPalabrasDifBajaES.length;
     expect(gameMethods.getRandomNumber(arrayLengthES)).toBeGreaterThanOrEqual(0);
     expect(gameMethods.getRandomNumber(arrayLengthES)).toBeLessThan(10);
-  })
+  });
 
 
 });

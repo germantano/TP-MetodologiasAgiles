@@ -12,7 +12,6 @@ var arrayPalabrasDifAltaEN = ["retrospective", "incremental", "development"];
 
 // Palabra que se va formando a medida que el jugador adivina
 var palabra = [];
-var palabraSecreta = "";
 var alertShown = "";
 var contadorAT = 0;
 
@@ -124,28 +123,22 @@ const gameMethods = {
     getWord: function(idioma, dificultad){
         switch(true){
             case (dificultad=="baja") && (idioma=="spanish"):
-            let arrayLen1 = arrayPalabrasDifBajaES.length;
-            return arrayPalabrasDifBajaES[this.getRandomNumber(arrayLen1)];
+            return arrayPalabrasDifBajaES[this.getRandomNumber(arrayPalabrasDifBajaES.length)];
         
         case (dificultad=="media") && (idioma=="spanish"):
-            let arrayLen2 = arrayPalabrasDifMediaES.length;
-            return arrayPalabrasDifMediaES[this.getRandomNumber(arrayLen2)];
+            return arrayPalabrasDifMediaES[this.getRandomNumber(arrayPalabrasDifMediaES.length)];
 
         case (dificultad=="alta") && (idioma=="spanish"):
-            let arrayLen3 = arrayPalabrasDifAltaES.length;
-            return arrayPalabrasDifAltaES[this.getRandomNumber(arrayLen3)];
+            return arrayPalabrasDifAltaES[this.getRandomNumber(arrayPalabrasDifAltaES.length)];
 
         case (dificultad=="baja") && (idioma=="english"):
-            let arrayLen4 = arrayPalabrasDifBajaEN.length
-            return arrayPalabrasDifBajaEN[this.getRandomNumber(arrayLen4)];
+            return arrayPalabrasDifBajaEN[this.getRandomNumber(arrayPalabrasDifBajaEN.length)];
             
         case (dificultad=="media") && (idioma=="english"):
-            let arrayLen5 = arrayPalabrasDifMediaEN.length
-            return arrayPalabrasDifMediaEN[this.getRandomNumber(arrayLen5)];
+            return arrayPalabrasDifMediaEN[this.getRandomNumber(arrayPalabrasDifMediaEN.length)];
     
         case (dificultad=="alta") && (idioma=="english"):
-            let arrayLen6 = arrayPalabrasDifAltaEN.length;
-            return arrayPalabrasDifAltaEN[this.getRandomNumber(arrayLen6)];
+            return arrayPalabrasDifAltaEN[this.getRandomNumber(arrayPalabrasDifAltaEN.length)];
         }
     },
     
