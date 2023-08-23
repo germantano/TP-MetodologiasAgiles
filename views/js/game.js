@@ -18,6 +18,8 @@ var arrayPalabrasDifAltaEN = ["retrospective", "incremental", "development", "me
 var palabra = [];
 var palabraSecreta = "";
 var intentos = 7;
+var alertShown = "";
+var contadorAT = 0;
 
 function setSettings(){
     var language = document.getElementById('idioma').value;
@@ -54,30 +56,48 @@ function startGame(idioma, dificultad){
     console.log(`La palabra secreta es: ${palabraSecreta}`);
 }
 
-function checkLetter (letra){
-    if (palabraSecreta.includes(letra)){
-        for(let posicion in palabraSecreta){
-            if(palabraSecreta[posicion] == letra){
-                palabra[posicion] = letra;
-                document.getElementById('inputField').value = palabra.join(" ");
-                console.log(`La palabra es: ${palabra.join("")}`);
+function checkLetter (letra, palabraDePrueba = null){
+    // Juego
+    if (palabraDePrueba === null){
+        if (palabraSecreta.includes(letra)){
+            for(let posicion in palabraSecreta){
+                if(palabraSecreta[posicion] == letra){
+                    palabra[posicion] = letra;
+                    document.getElementById('inputField').value = palabra.join(" ");
+                    console.log(`La palabra es: ${palabra.join("")}`);
+                }
             }
+            if(palabra.join("") === palabraSecreta){
+                alert('Felicitaciones! Haz ganado..');
+                location.href = "index.html";
+            }
+            return true;
+        }else{
+            intentos--;
+            console.log(`La letra ${letra} no se encuentra en la palabra. Intentos restantes: ${ intentos}`);
+            document.getElementById('intentos').innerHTML = `: ${intentos}`;
+            console.log(`La palabra es: ${palabra}`);
+            if(intentos== 0){
+                alert("Perdiste :(");
+                location.href = "index.html";
+            }
+            return false;
         }
-        if(palabra.join("") === palabraSecreta){
-            alert('Felicitaciones! Haz ganado..');
-            location.href = "index.html";
+    }
+
+    // Acceptance Tests
+    else{
+        if (palabraDePrueba.includes(letra)){
+            contadorAT++;
+            if (contadorAT == palabraDePrueba.length){
+                alertShown = "Felicitaciones! Haz ganado..";
+                return alertShown;
+            }
+            return true;
         }
-        return true;
-    }else{
-        intentos--;
-        console.log(`La letra ${letra} no se encuentra en la palabra. Intentos restantes: ${ intentos}`);
-        document.getElementById('intentos').innerHTML = `: ${intentos}`;
-        console.log(`La palabra es: ${palabra}`);
-        if(intentos== 0){
-            alert("Perdiste :(");
-            location.href = "index.html";
+        else{
+            return false;
         }
-        return false;
     }
 }
 

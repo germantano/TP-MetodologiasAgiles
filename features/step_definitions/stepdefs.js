@@ -2,6 +2,7 @@
 const { Builder, webdriver } = require('selenium-webdriver');
 const { Given, When, Then } = require('@cucumber/cucumber');
 const {gameMethods} = require('../../routes/game.js');
+const assert = require('assert');
 
 let driver;
 const letrasAbecedario = [
@@ -50,61 +51,52 @@ Then('la URL de la página principal debería ser {string}', async (expectedUrl)
 
 
 // Test usuario gana partida
-
-
 let palabraAdivinar;
-let ultimaLetraUsuario;
-let usuarioGano = false;
-let ingresoLetras = ['s', 'c', 'a', 'r', 'e', 'u', 'm'];
+let alertaPartidaGanada;
+let alertShown = false;
 
-
-Given('el juego comienza con la palabra scrum', function () {
-    palabraAdivinar = "scrum";
+Given('el juego comienza con la palabra {string}', function (word) {
+    palabraAdivinar = word;
     console.log(`Palabra adivinar ${palabraAdivinar}`);
 });
 
-When('usuario adivina una letra correcta', async () => {
-    for (let letra of ingresoLetras) {
-        if (palabraAdivinar.includes(letra)) {
-            ultimaLetraUsuario = letra;
-            console.log(`El usuario ingreso la letra ${letra}`);
-            console.log(`La palabra adivinar contiene la letra ${letra}`);
-        }
-    }
-    driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://localhost:3000/game.html');
-    let array = driver.findElements(webdriver.By.className('keys'));
-    for (letra of array){
-        letra.click();
+When('usuario adivina la letra {string}', function (letter) {
+    alertaPartidaGanada = gameMethods.checkLetter(letter, palabraAdivinar);
+    if (alertaPartidaGanada === "Felicitaciones! Haz ganado.."){
+        alertShown = true;
     }
 });
 
-Then('usuario gana la partida, juego informa situación', function () {
-    console.log('¡Felicidades! Ganaste la partida.');
+Then('el usuario recibe un mensaje tipo alerta {string}', function () {
+    assert.equal(alertShown, true); // Verificar que la alerta fue mostrada
+    alertShown = false; // Reiniciar para el siguiente escenario
 });
+
 
 
 // Test usuario pierde partida
+let palabraAdivinarPierde;
+let intentos = 7;
+let letraCorrecta;
+let mensajeAlertaPierde;
 
-let intentos = 3;
-let ingresoLetrasPierde = ['a', 'b', 'c', 'd', 'w']
-
-Given('el juego comienza con la palabra agilidad', function () {
-    
+Given('el juego comienza con la palabra {string}', function (word) {
+    palabraAdivinarPierde = word;
+    console.log(`Palabra adivinar ${palabraAdivinarPierde}`);
 });
 
-When('usuario ingresa una letra incorrecta', function () {
-    for (let letra of ingresoLetrasPierde) {
-        if (!gameMethods.checkLetter(letra)) {
-          intentos -= 1;
-          if (intentos == 0) {
-            break;
-          }
-        }
+When('usuario ingresa la letra incorrecta {string}', function (letter) {
+    letraCorrecta = checkLetter(palabraAdivinarPierde, letter);
+    if (!letraCorrecta){
+        intentos--;
+    }
+    if (intentos == 0){
+        mensajeAlertaPierde = "Perdiste";
+        alertShown = true;
     }
 });
 
-Then('usuario pierde la partida, juego informa situación', function () {
-    console.log(`Perdiste la partida`);
+Then('el usuario recibe un mensaje tipo alerta {string}', function () {
+    assert.equal(alertShown, true);
 });
 
