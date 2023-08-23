@@ -18,8 +18,8 @@ var contadorAT = 0;
 
 const gameMethods = {
 
-    getRandomNumber: function() {
-        return Math.floor(Math.random() * 10);
+    getRandomNumber: function(max) {
+        return Math.floor(Math.random() * max);
     },
 
     startGame: function(){
