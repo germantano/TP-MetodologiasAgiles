@@ -55,19 +55,22 @@ let palabraAdivinar;
 let alertaPartidaGanada;
 let alertShown = false;
 
-Given('el juego comienza con la palabra {string}', function (word) {
+Given('el juego comienza con la palabra secreta {string}', function (word) {
     palabraAdivinar = word;
     console.log(`Palabra adivinar ${palabraAdivinar}`);
 });
 
-When('usuario adivina la letra {string}', function (letter) {
-    alertaPartidaGanada = gameMethods.checkLetter(letter, palabraAdivinar);
+When('usuario adivina la letra {string},{string},{string},{string},{string}', function (letter1, letter2, letter3, letter4, letter5) {
+    letters = [letter1, letter2, letter3, letter4, letter5];
+    letters.forEach(letter => {
+        alertaPartidaGanada = gameMethods.checkLetter(letter, palabraAdivinar);
+    });
     if (alertaPartidaGanada === "Felicitaciones! Haz ganado.."){
         alertShown = true;
     }
 });
 
-Then('el usuario recibe un mensaje tipo alerta {string}', function () {
+Then('el usuario recibe mensaje ganaste {string}', function (word) {
     assert.equal(alertShown, true); // Verificar que la alerta fue mostrada
     alertShown = false; // Reiniciar para el siguiente escenario
 });
@@ -85,18 +88,21 @@ Given('el juego comienza con la palabra {string}', function (word) {
     console.log(`Palabra adivinar ${palabraAdivinarPierde}`);
 });
 
-When('usuario ingresa la letra incorrecta {string}', function (letter) {
-    letraCorrecta = checkLetter(palabraAdivinarPierde, letter);
-    if (!letraCorrecta){
-        intentos--;
-    }
-    if (intentos == 0){
-        mensajeAlertaPierde = "Perdiste";
-        alertShown = true;
-    }
+When('usuario ingresa la letra incorrecta {string},{string},{string},{string},{string},{string},{string}', function (letter1, letter2, letter3, letter4, letter5, letter6, letter7) {
+    letters = [letter1, letter2, letter3, letter4, letter5, letter6, letter7];
+    letters.forEach(letter => {
+        letraCorrecta = gameMethods.checkLetter(letter, palabraAdivinarPierde);
+        if (!letraCorrecta){
+            intentos--;
+        }
+        if (intentos == 0){
+            mensajeAlertaPierde = "Perdiste";
+            alertShown = true;
+        }
+    });
 });
 
-Then('el usuario recibe un mensaje tipo alerta {string}', function () {
+Then('el usuario recibe mensaje perdiste {string}', function (word) {
     assert.equal(alertShown, true);
 });
 

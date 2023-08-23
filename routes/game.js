@@ -13,6 +13,8 @@ var arrayPalabrasDifAltaEN = ["retrospective", "incremental", "development"];
 // Palabra que se va formando a medida que el jugador adivina
 var palabra = [];
 var palabraSecreta = "";
+var alertShown = "";
+var contadorAT = 0;
 
 const gameMethods = {
 
@@ -34,7 +36,6 @@ const gameMethods = {
                 break;
             }
         }
-        console.log(`Perdiste, la palabra era ${palabraSecreta}`);
     },
     
     checkWord: function(word) {
@@ -56,6 +57,11 @@ const gameMethods = {
         // Tests
         if(palabraDePrueba){
             if (palabraDePrueba.includes(letra)){
+                contadorAT++;
+                if (contadorAT == palabraDePrueba.length){
+                    alertShown = "Felicitaciones! Haz ganado..";
+                    return alertShown;
+                }
                 return true;
             }
             else{
