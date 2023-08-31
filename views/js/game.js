@@ -78,6 +78,7 @@ function checkLetter (letra, palabraDePrueba = null){
             document.getElementById('intentos').innerHTML = `: ${intentos}`;
             console.log(`La palabra es: ${palabra}`);
             if(intentos== 0){
+                document.getElementById('intentos').innerHTML = `: ${intentos}`;
                 alert("Perdiste :(");
                 location.href = "index.html";
             }
@@ -126,6 +127,9 @@ function getWord(idioma, dificultad){
         case (dificultad=="alta") && (idioma=="english"):
             let arrayLen6 = arrayPalabrasDifAltaEN.length;
             return arrayPalabrasDifAltaEN[getRandomNumber(arrayLen6)];
+        
+        case(dificultad=="test") && (idioma=="spanish"):
+            return "scrum";
     }
 }
 
