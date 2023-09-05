@@ -57,7 +57,6 @@ Given('el juego comienza con la palabra secreta', async () => {
 When('usuario adivina la letra {string},{string},{string},{string},{string}', async (letter1, letter2, letter3, letter4, letter5) => {
     letters = [letter1, letter2, letter3, letter4, letter5];
     for await(let letter of letters){
-        // await driver.executeScript(`document.getElementById("${letter}").click();`);
         await driver.wait(until.elementLocated(By.id(letter))).click();
     }
 });
@@ -80,7 +79,6 @@ Given('el jugador erra', async () => {
 
 When('usuario ingresa la letra incorrecta', async () => {
     for await(let letter of letters){
-        //await driver.executeScript(`document.getElementById("${letter}").click();`);
         await driver.wait(until.elementLocated(By.id(letter))).click();
         if (!"scrum".includes(letter)){
             intentos--;

@@ -63,7 +63,7 @@ describe('game module', () => {
   it('get random number (between 0 & 3): idioma inglés', ()=>{
     var arrayLengthEN = arrayPalabrasDifBajaEN.length;
     expect(gameMethods.getRandomNumber(arrayLengthEN)).toBeGreaterThanOrEqual(0);
-    expect(gameMethods.getRandomNumber(arrayLengthEN)).toBeLessThan(3);
+    expect(gameMethods.getRandomNumber(arrayLengthEN)).toBeLessThan(2);
   });
 
   it('get random number (between 0 & 10): idioma español', ()=>{
